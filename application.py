@@ -1,11 +1,9 @@
-import os
 from flask import Flask, request
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+import utils.db
+from models.image import Image
 
 app = Flask(__name__)
-engine = create_engine("mysql+pymysql://root:ka*dj#D23Aff2@localhost:3307/prod") #TODO: put in variable
-Session = sessionmaker(bind=engine)
+# TODO: put in variable
 
 
 @app.route("/images", methods=["POST"])
@@ -17,4 +15,5 @@ def get_images():
 
 if __name__ == "__main__":
     # app.run(debug=True)
+    utils.db.insert(Image(owner="orhalimi", image_blob=bytes("heyhey", encoding='utf8')))
     pass

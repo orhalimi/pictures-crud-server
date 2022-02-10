@@ -1,9 +1,9 @@
-import base
+from models.base import Base
 from sqlalchemy import Column, Integer, String, BLOB, DateTime
 from datetime import datetime
 
 
-class Image(base.Base):
+class Image(Base):
     __tablename__ = 'images'
     id = Column(Integer(), primary_key=True, unique=True, autoincrement=True)
     owner = Column(String(80))
