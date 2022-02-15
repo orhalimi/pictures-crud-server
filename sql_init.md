@@ -1,11 +1,24 @@
+
 CREATE DATABASE prod;
 use prod;
+
+CREATE TABLE users(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY UNIQUE,
+    username VARCHAR(21) NOT NULL, 
+    password VARCHAR(64) NOT NULL,
+    salt VARCHAR(8) NOT NULL
+) ENGINE = InnoDB;
+
 CREATE TABLE images(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY UNIQUE,
-    owner VARCHAR(80),
+    owner_id int, 
     image_blob BLOB NOT NULL,
-    create_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP()
+    create_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    FOREIGN KEY (owner_id) REFERENCES users (id)
+		ON DELETE CASCADE
+        ON UPDATE RESTRICT
 ) ENGINE = InnoDB;
+
 
 CREATE TABLE images_tags(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY UNIQUE,
@@ -16,3 +29,9 @@ CREATE TABLE images_tags(
         ON UPDATE RESTRICT
     
 ) ENGINE = InnoDB;
+
+
+// there is also sql uuid data type 
+
+//catching, etag
+// read about context manager on python - the with statement
