@@ -1,7 +1,9 @@
 from models.base import Base
 from sqlalchemy import Column, Integer, String, ForeignKey
+from utils.decorators import sqlalchemy_repr
 
 
+@sqlalchemy_repr
 class Image(Base):
     __tablename__ = 'images'
     id = Column(Integer(), primary_key=True, unique=True, autoincrement=True)

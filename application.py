@@ -29,10 +29,10 @@ if __name__ == "__main__":
     print(salt)
     user = User(username="orhalimi", password=hashed_password, salt=salt)
 
-    with session_scope() as session:
-        session.add(user)
-        session.commit()
-        print(user)
+    # with session_scope() as session:
+    #     session.add(user)
+    #     session.commit()
+    #     print(user)
 
 
     # image = Image(owner=1, image_blob=bytes("heyhey", encoding='utf8'))
