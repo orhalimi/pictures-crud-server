@@ -10,7 +10,7 @@ class ImageTag(Base):
     id = Column(Integer(), primary_key=True, unique=True, autoincrement=True)
     image_id = Column(Integer(), ForeignKey(
         'images.id', ondelete="CASCADE", onupdate="RESTRICT"), nullable=False)
-    tag = Column(String(120))
+    tag = Column(String(40))
 
     def __repr__(self):
         return f"Image id={self.id} image_id={self.image_id} tag={self.tag}"

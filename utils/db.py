@@ -2,7 +2,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from contextlib import contextmanager
 
-
 engine = create_engine(
     "mysql+pymysql://root:ka*dj#D23Aff2@localhost:3307/prod", echo=True)
 Session = sessionmaker(bind=engine, autocommit=False, autoflush=False)
@@ -19,5 +18,4 @@ def session_scope():
         raise
     finally:
         session.close()
-
 

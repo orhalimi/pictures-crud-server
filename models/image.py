@@ -1,5 +1,6 @@
 from models.base import Base
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, DATETIME, BLOB, Integer, String
+from sqlalchemy.sql import func
 from utils.decorators import sqlalchemy_repr
 
 
@@ -7,11 +8,8 @@ from utils.decorators import sqlalchemy_repr
 class Image(Base):
     __tablename__ = 'images'
     id = Column(Integer(), primary_key=True, unique=True, autoincrement=True)
-    owner_id = Column(Integer(), ForeignKey(
-        'user.id', ondelete="CASCADE", onupdate="RESTRICT"), nullable=False)
-    image_id = Column(Integer(), ForeignKey(
-        'images.id', ondelete="CASCADE", onupdate="RESTRICT"), nullable=False)
-    tag = Column(String(120))
+    owner_id = Column(String(60), nullable=False)
+    image_blob = Column(BLOB())
+    create_date = Column(DATETIME(), nullable=False, default=func.now())
+    name = Column(String(44))
 
-    def __repr__(self):
-        return f"Image id={self.id} owner_id={self.owner_id} image_blob={self.image_blob} create_date={self.create_date}"
